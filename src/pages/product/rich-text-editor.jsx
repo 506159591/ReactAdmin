@@ -10,15 +10,16 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 export default class EditorConvertToHTML extends Component {
   static propTypes = {
-    detail: PropTypes.string
+    detail: PropTypes.string    //商品详情数据
   }
   state = {
-    editorState: EditorState.createEmpty(),
+    editorState: EditorState.createEmpty(),  //创建一个没有内容的编辑对象
   }
 
   constructor(props) {
     super(props)
     const html = this.props.detail
+    //如果有值, 根据html格式字符串创建一个对应的编辑对象
     if (html) {
       const contentBlock = htmlToDraft(html);
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
@@ -32,9 +33,12 @@ export default class EditorConvertToHTML extends Component {
       }
     }
   }
+  //提供给父组件获取detail数据的函数
   getDetail = () => {
+    //返回输入数据对应的html格式的文本
     return draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
   }
+  //输入过程中实时的回调
   onEditorStateChange = (editorState) => {
     this.setState({
       editorState,

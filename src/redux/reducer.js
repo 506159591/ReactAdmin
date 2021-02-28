@@ -11,7 +11,7 @@ import storageUtils from '../utils/storageUtils'
 
 
 const initHeadTitle = ''
-
+//管理头部标题的reducer
 function headTitle(state = initHeadTitle, action) {
   switch (action.type) {
     case SET_HEAD_TITLE:
@@ -21,7 +21,7 @@ function headTitle(state = initHeadTitle, action) {
   }
 }
 const initUser = storageUtils.getUser()
-
+//管理用户信息的reducer
 function user(state = initUser, action) {
   switch (action.type) {
     case RECEIVE_USER:
@@ -37,7 +37,7 @@ function user(state = initUser, action) {
       return state
   }
 }
-
+//合并产生总的reducer
 export default combineReducers({
   headTitle,
   user

@@ -10,7 +10,7 @@ import moment from 'moment'
 
 import Line from './line'
 import Bar from './bar'
-import './home.less'
+import './index.less'
 
 const dateFormat = 'YYYY/MM/DD'
 const {RangePicker} = DatePicker
@@ -20,7 +20,7 @@ export default class Home extends Component {
   state = {
     isVisited: true
   }
-
+  /* 切换栏 */
   handleChange = (isVisited) => {
     return () => this.setState({isVisited})
   }

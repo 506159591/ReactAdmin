@@ -6,4 +6,10 @@ import store from './redux/store'
 
 
 
-ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'))
+ReactDOM.render(
+  //包裹Provider,将store放在context中
+  <Provider store={store}>
+    <App/>
+  </Provider>, 
+  document.getElementById('root')
+  )
