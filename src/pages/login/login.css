@@ -20,11 +20,46 @@
   color: #fff;
 }
 .login .login-section {
+  position: relative;
   height: 300px;
   width: 400px;
   background-color: #fff;
   margin: 60px auto;
   padding: 20px 40px;
+}
+.login .login-section .err-msg {
+  visibility: hidden;
+  position: absolute;
+  height: 30px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  font-size: 16px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #f60c1a;
+  color: #fff;
+}
+@keyframes warning {
+  0% {
+    opacity: 0;
+    visibility: visible;
+  }
+  10% {
+    opacity: 1;
+    bottom: 0;
+  }
+  90% {
+    opacity: 1;
+    bottom: 0;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.login .login-section .err-msg.show {
+  animation: warning 5s;
 }
 .login .login-section h2 {
   font-size: 30px;

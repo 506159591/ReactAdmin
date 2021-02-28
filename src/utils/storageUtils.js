@@ -1,7 +1,7 @@
 import store from 'store'
 
 const USER_KEY = 'user_key'
-export default {
+const storageUtils = {
     saveUser(user) {
         return store.set(USER_KEY, user)
     },
@@ -12,3 +12,4 @@ export default {
         return store.remove(USER_KEY)
     }
 }
+export default storageUtils

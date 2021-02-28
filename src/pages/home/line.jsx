@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Card, Button } from 'antd'
 import * as echarts from 'echarts/core';
 import {
     TitleComponent,
@@ -40,12 +39,12 @@ export default class Line extends Component {
     }
     getOption = () => {
         const { goods } = this.state
-        const chartDom = document.getElementsByClassName('main')[0];
+        const chartDom = document.getElementsByClassName('line')[0];
         const myChart = echarts.init(chartDom);
         let option;
         option = {
             title: {
-                text: '折线图'
+                text: '销量-库存'
             },
             tooltip: {
                 trigger: 'axis'
@@ -81,12 +80,8 @@ export default class Line extends Component {
     }
     render() {
         return (
-            <div>
-                <Card>
-                    <Button type='primary' disabled onClick={this.update}>更新</Button>
-                </Card>
-                <div className='main' style={{ width: 600, height: 400, left: 300, top: 80 }}></div>
-            </div>
+                <div className='line' style={{ float: 'right', width: 600, height: 240, right: 100, top: 10 }}></div>
+         
         )
     }
 }
