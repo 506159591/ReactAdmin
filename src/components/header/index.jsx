@@ -3,34 +3,17 @@ import './index.less'
 import {reqWeather} from '../../api'
 import { formateDate } from "../../utils/dateUtils";
 import {withRouter} from 'react-router-dom'
-import menuList from '../../config/menuConfig'
-import memoryUtils from '../../utils/memoryUtils'
-import storageUtils from '../../utils/storageUtils'
 import { Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import LinkButton from "../link-button";
+import { connect } from "react-redux";
+import { logout } from "../../redux/actions";
 
 class Header extends Component {
     state = {
         currentTime: formateDate(Date.now()),
         temperature: '',
         weather: ''
-    }
-    getTitle = () => {
-        const path = this.props.location.pathname
-        let title
-        menuList.forEach(item => {
-            
-            if (item.key === path) {
-                title = item.title
-            }else if (item.children) {
-                const cItem = item.children.find(cItem => path.indexOf(cItem.key)===0)
-                if (cItem) {
-                    title = cItem.title
-                }
-            }
-        })
-        return title
     }
     getWeather = async () => {
         const {temperature, weather} = await reqWeather()
@@ -47,9 +30,7 @@ class Header extends Component {
             title: '确认退出吗?',
             icon: <ExclamationCircleOutlined />,
             onOk:()=> {
-              storageUtils.removeUser()
-              memoryUtils.user={}
-              this.props.history.replace('/login')
+              this.props.logout()
             },
           });
     }
@@ -61,8 +42,8 @@ class Header extends Component {
         clearInterval(this.timer)
     }
     render() {
-        const username = memoryUtils.user.username
-        const title = this.getTitle()
+        const username = this.props.user.username
+        const title = this.props.title
         return (
             <div className='header'>
                 <div className='header-top'>
@@ -83,4 +64,7 @@ class Header extends Component {
     }
 }
 
-export default withRouter(Header)
+export default connect(
+    state => ({title: state.headTitle, user: state.user}),
+    {logout}
+)(withRouter(Header))
