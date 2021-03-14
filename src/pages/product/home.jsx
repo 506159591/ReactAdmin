@@ -119,7 +119,7 @@ export default class Home extends Component {
           onClick={() => this.getProducts(1)}
         >
           搜索
-                </Button>
+        </Button>
       </span>
     )
     const extra = (

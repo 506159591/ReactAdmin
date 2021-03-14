@@ -70,6 +70,9 @@ class LeftNav extends Component {
   }
   render() {
     let path = this.props.location.pathname
+    if(path.indexOf('/product')===0) { // 当前请求的是商品或其子路由界面
+      path = '/product'
+    }
     const openKey = this.openKey
     return (
       <div className='left-nav'>
